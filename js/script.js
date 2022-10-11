@@ -73,4 +73,16 @@ function loadCitiesByProvinceId(provinceId) {
     })
 }
 
-
+// Print table of members-----------------------------------------------------
+function PrintTable() {
+    // open new windows of result members table
+    let printWindow = window.open('', '', 'height=500px,width=900px');
+    printWindow.document.write('<html lang="fa"><head><title>نتایج جدول کاربران</title>');
+    printWindow.document.write('<body>');
+    let tableContents = document.getElementById("result-table-div").innerHTML;
+    printWindow.document.write(tableContents);
+    printWindow.document.write('</body>');
+    printWindow.document.write('</html>');
+    printWindow.print();
+    printWindow.close();
+}

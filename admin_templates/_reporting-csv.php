@@ -99,72 +99,79 @@ if ($permission->getPermissionTypeById($current_member['member_type_id']) != 'ma
 
             <h2 class="mb-3">نتایج گزارش</h2>
             <!-- show all authors -->
-            <table class="table table-bordered font-size-14">
-                <!-- header of table columns -->
-                <thead>
-                <tr class="text-center">
-                    <th scope="col">*</th>
-                    <th scope="col">نام</th>
-                    <th scope="col">نام خانوادگی</th>
-                    <th scope="col">نام کاربری</th>
-                    <th scope="col">جنسیت</th>
-                    <th scope="col">نظام وظیفه</th>
-                    <th scope="col">تاریخ تولد</th>
-                    <th scope="col">کد ملی</th>
-                    <th scope="col">استان</th>
-                    <th scope="col">شهر</th>
-                    <th scope="col">شماره تلفن</th>
-                    <th scope="col">ایمیل</th>
-                </tr>
-                </thead>
+            <div id="result-table-div">
 
-                <!-- body of table: foreach to all members to show the row of their informations -->
-                <tbody>
-                <?php
-                $number = 1;
-                if ($all_members) {
-                foreach ($all_members as $member) {
-                    $member_id = $member['id'];
-                    $member_first_name = $member['first_name'];
-                    $member_last_name = $member['last_name'];
-                    $member_username = $member['username'];
-                    $member_gender = $member['gender'] == 'male' ? 'مرد' : 'زن';
-                    $member_military = $member['military'];
-                    if ($member_military) {
-                        if ($member_military == 'finished') $member_military = 'خدمت کرده';
-                        else if ($member_military == 'permanent-exemption') $member_military = 'معافیت دائم';
-                        else if ($member_military == 'temporary-exemption') $member_military = 'معافیت موقت';
-                        else if ($member_military == 'medical-exemption') $member_military = 'معافیت پزشکی';
-                    } else $member_military = '-';
-                    $member_birth_date = $member['birth_date'];
-                    $member_nation_code = $member['nation_code'];
-                    $member_province = $member['province'] ? $province->getProvinceNameById($member['province']) : '-';
-                    $member_city = $member['city'] ? $city->getCityNameById($member['city']) : '-';
-                    $member_phone_number = $member['phone_number'];
-                    $member_email = $member['email'];
-                    ?>
-                    <tr class="text-center">
-                        <th scope="row"><?php echo $number; ?></th>
-                        <td><?php echo $member_first_name; ?></td>
-                        <td><?php echo $member_last_name; ?></td>
-                        <td><?php echo $member_username; ?></td>
-                        <td><?php echo $member_gender; ?></td>
-                        <td><?php echo $member_military; ?></td>
-                        <td><?php echo $member_birth_date; ?></td>
-                        <td><?php echo $member_nation_code; ?></td>
-                        <td><?php echo $member_province; ?></td>
-                        <td><?php echo $member_city; ?></td>
-                        <td><?php echo $member_phone_number; ?></td>
-                        <td><?php echo $member_email; ?></td>
+                <table cellspacing="0" rules="all" border="1"
+                       class="table table-bordered font-size-14 p-3" id="result-table">
+                    <!-- header of table columns -->
+                    <thead>
+                    <tr class=" text-center
+                ">
+                        <th scope="col">*</th>
+                        <th scope="col">نام</th>
+                        <th scope="col">نام خانوادگی</th>
+                        <th scope="col">نام کاربری</th>
+                        <th scope="col">جنسیت</th>
+                        <th scope="col">نظام وظیفه</th>
+                        <th scope="col">تاریخ تولد</th>
+                        <th scope="col">کد ملی</th>
+                        <th scope="col">استان</th>
+                        <th scope="col">شهر</th>
+                        <th scope="col">شماره تلفن</th>
+                        <th scope="col">ایمیل</th>
                     </tr>
+                    </thead>
+
+                    <!-- body of table: foreach to all members to show the row of their informations -->
+                    <tbody>
                     <?php
-                    $number++;
-                } // all_members foreach ends ?>
-                </tbody>
-            </table>
+                    $number = 1;
+                    if ($all_members) {
+                    foreach ($all_members as $member) {
+                        $member_id = $member['id'];
+                        $member_first_name = $member['first_name'];
+                        $member_last_name = $member['last_name'];
+                        $member_username = $member['username'];
+                        $member_gender = $member['gender'] == 'male' ? 'مرد' : 'زن';
+                        $member_military = $member['military'];
+                        if ($member_military) {
+                            if ($member_military == 'finished') $member_military = 'خدمت کرده';
+                            else if ($member_military == 'permanent-exemption') $member_military = 'معافیت دائم';
+                            else if ($member_military == 'temporary-exemption') $member_military = 'معافیت موقت';
+                            else if ($member_military == 'medical-exemption') $member_military = 'معافیت پزشکی';
+                        } else $member_military = '-';
+                        $member_birth_date = $member['birth_date'];
+                        $member_nation_code = $member['nation_code'];
+                        $member_province = $member['province'] ? $province->getProvinceNameById($member['province']) : '-';
+                        $member_city = $member['city'] ? $city->getCityNameById($member['city']) : '-';
+                        $member_phone_number = $member['phone_number'];
+                        $member_email = $member['email'];
+                        ?>
+                        <tr class="text-center">
+                            <th scope="row"><?php echo $number; ?></th>
+                            <td><?php echo $member_first_name; ?></td>
+                            <td><?php echo $member_last_name; ?></td>
+                            <td><?php echo $member_username; ?></td>
+                            <td><?php echo $member_gender; ?></td>
+                            <td><?php echo $member_military; ?></td>
+                            <td><?php echo $member_birth_date; ?></td>
+                            <td><?php echo $member_nation_code; ?></td>
+                            <td><?php echo $member_province; ?></td>
+                            <td><?php echo $member_city; ?></td>
+                            <td><?php echo $member_phone_number; ?></td>
+                            <td><?php echo $member_email; ?></td>
+                        </tr>
+                        <?php
+                        $number++;
+                    } // all_members foreach ends ?>
+                    </tbody>
+                </table>
+            </div>
             <div class="w-100 text-center">
                 <!-- result csv file download button -->
                 <a href="csvfile/reportingResults.csv" download class="btn btn-warning">دانلود اکسل نتایج</a>
+                <!-- result pdf result print button -->
+                <button onclick="PrintTable();" class="btn btn-success">چاپ pdf نتایج</button>
             </div>
             <?php
             } else { // if $all_members array was empty
