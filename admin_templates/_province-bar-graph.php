@@ -20,6 +20,10 @@ if ($permission->getPermissionTypeById($current_member['member_type_id']) != 'ma
 
     ?>
 
+    <!-- to show the current tab in sidebar by activating the link -->
+    <script type="text/javascript">
+        document.querySelector("#admin-province-graph").classList.add('active');
+    </script>
 
     <!-- show the result as chart -->
     <div class="container">
